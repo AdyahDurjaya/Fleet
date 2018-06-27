@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{'RIDE_INFORMATION' | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <h2>{{'FROM' | translate}}</h2>
+          <p>{{ trip.origin.vicinity }}</p>
+          <button item-right ion-button clear (click)="getDirection(trip.origin.location.lat,trip.origin.location.lng)">
+            <ion-icon name="navigate"></ion-icon>&nbsp; {{'NAVIGATE' | translate}}
+          </button>
+        </ion-item>
+        <ion-item (click)="getDirection(trip.destination.location.lat,trip.destination.location.lng)">
+          <h2>{{'TO' | translate}}</h2>
+          <p>{{ trip.destination.vicinity }}</p>
+          <button item-right clear ion-button (click)="getDirection(trip.destination.location.lat,trip.destination.location.lng)">
+            <ion-icon name="navigate"></ion-icon>&nbsp; {{'NAVIGATE' | translate}}
+          </button>
+        </ion-item>
+        <ion-item *ngIf="passenger.phoneNumber">
+          <h2>{{'CALL' | translate}}</h2>
+          <p>{{(passenger)?.phoneNumber }}</p>
+          <a href="tel:{{passenger.phoneNumber}}" ion-button clear item-right>
+            <ion-icon name="call"></ion-icon>&nbsp; {{'CALL' | translate}}
+          </a>
+        </ion-item>
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-badge>{{ trip.payment_method }}</ion-badge>
+</ion-content>
+<ion-footer>
+  <button ion-button block clear [hidden]="isTripStarted" (click)="pickup()">{{'PICKUP' | translate}}</button>
+  <button ion-button block clear [hidden]="!isTripStarted" (click)="showPayment()">{{'COMPLETE_RIDE' | translate}}</button>
+</ion-footer>

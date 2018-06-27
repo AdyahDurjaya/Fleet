@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>Drivers ({{drivers.length}})</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>More</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let driver of drivers">
+        <td><img [src]="driver.photoURL" class="dp"> <a href="#" (click)="openInfo(driver.key)">{{driver.name}}</a></td>
+        <td>{{driver.email}}</td>
+        <td><a item-right href="tel:{{driver.phoneNumber}}" *ngIf="driver.phoneNumber">{{driver.phoneNumber}}</a></td>
+        <td><a href="#" (click)="delete(driver.key)">Delete</a></td>
+      </tr>
+    </tbody>
+  </table>
+</ion-content>

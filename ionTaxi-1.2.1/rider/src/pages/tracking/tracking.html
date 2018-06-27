@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{'ON_THE_WAY' | translate}}</ion-title>
+    <ion-buttons end>
+      <button ion-button *ngIf="tripStatus == 'finished'"  (click)="showRateCard()">{{'FINISH_TRIP' | translate}}</button>
+      <button ion-button *ngIf="tripStatus == 'waiting'" (click)="cancelTrip()">{{'CANCEL_TRIP' | translate}}</button>
+      <a href="tel:{{sos}}" ion-button *ngIf="tripStatus == 'going'">{{'SOS' | translate}}</a>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div id="map"></div>
+</ion-content>
+<ion-footer>
+    <div style="float:right;background:yellow; color: #222">{{ 'OTP' | translate}}: {{trip.otp}}</div>
+    <ion-item>
+      <ion-avatar item-left>
+          <img src="{{ (driver)?.photoURL }}"/>
+      </ion-avatar>
+      <h2>{{ (driver)?.name }} &nbsp; {{(driver)?.rating}} <ion-icon name="md-star" color="yellow"></ion-icon> </h2>
+      <p>{{ (driver)?.plate }} &middot; {{ (driver)?.brand }}</p>
+      <a item-right ion-button clear href="tel: {{ (driver)?.phoneNumber }} ">
+        <ion-icon name="call"></ion-icon>&nbsp;{{'CALL' | translate}}
+      </a>
+    </ion-item>
+</ion-footer>

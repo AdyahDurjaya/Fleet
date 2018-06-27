@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>{{passenger.name}}</ion-title>
+    <ion-buttons end>
+      <button ion-button clear (click)="close()">Close</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-segment [(ngModel)]="tabs">
+      <ion-segment-button value="basicinfo">
+        BASIC INFORMATION
+      </ion-segment-button>
+      <ion-segment-button value="ridehistroy" (click)="getTrips()">
+        Ride History
+      </ion-segment-button>
+    </ion-segment>
+    <div [ngSwitch]="tabs">
+        <div *ngSwitchCase="'basicinfo'">
+          <ion-item>
+            <ion-avatar item-left>
+              <img src="{{passenger.photoURL}}"/>
+            </ion-avatar>
+            <ion-label stacked>Name</ion-label>
+            <ion-input type="text" [(ngModel)]="passenger.name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Email</ion-label>
+            <ion-input type="text" [(ngModel)]="passenger.email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Phone Number</ion-label>
+            <ion-input type="text" [(ngModel)]="passenger.phoneNumber"></ion-input>
+            <a ion-button item-right *ngIf="passenger.phoneNumber" href="tel:{{passenger.phoneNumber}}">Call</a>
+          </ion-item>
+          <ion-item>
+            <button ion-button block (click)="updateUserInfo()">Update</button>
+          </ion-item>
+        </div>
+        <div *ngSwitchCase="'ridehistroy'">
+          <ion-card *ngFor="let trip of trips">
+              <ion-card-content>
+                <p>{{trip.$key}}</p>
+                <ion-row>
+                  <ion-col>
+                    <b style="text-align:center">FROM</b> 
+                    <p>{{ trip.origin.vicinity }} <br/> <ion-note>{{ trip.pickedUpAt}}</ion-note></p>
+                  </ion-col>
+                  <ion-col>
+                      <b style="text-align:center">TO</b> 
+                      <p>{{ trip.destination.vicinity }} <br/> <ion-note>{{ trip.droppedOffAt}}</ion-note></p>
+                  </ion-col>
+                </ion-row>
+                <p>Payment Mode: {{ trip.paymentMethod }}</p>
+                <p>Fee: {{trip.currency}} {{trip.fee}} * {{ trip.promo}} {{trip.discount}} % = {{ trip.fee - (trip.fee * trip.discount / 100) }}</p>
+              </ion-card-content>
+            </ion-card>
+        </div>
+      </div>
+</ion-content>

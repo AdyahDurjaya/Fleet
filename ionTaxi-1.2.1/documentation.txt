@@ -1,0 +1,3 @@
+Thanks for purchasing
+
+Docs Link: https://codesundar.com/docs/ionic-firebase-taxi-setup

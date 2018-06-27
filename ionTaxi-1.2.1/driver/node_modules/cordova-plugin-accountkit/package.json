@@ -1,0 +1,63 @@
+{
+  "_from": "cordova-plugin-accountkit@^1.4.0",
+  "_id": "cordova-plugin-accountkit@1.4.0",
+  "_inBundle": false,
+  "_integrity": "sha1-KbYtnMY8YHrZS+I4PhJn0fquL9g=",
+  "_location": "/cordova-plugin-accountkit",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "cordova-plugin-accountkit@^1.4.0",
+    "name": "cordova-plugin-accountkit",
+    "escapedName": "cordova-plugin-accountkit",
+    "rawSpec": "^1.4.0",
+    "saveSpec": null,
+    "fetchSpec": "^1.4.0"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-accountkit/-/cordova-plugin-accountkit-1.4.0.tgz",
+  "_shasum": "29b62d9cc63c607ad94be2383e1267d1faae2fd8",
+  "_spec": "cordova-plugin-accountkit@^1.4.0",
+  "_where": "/home/desa/ionTaxi-1.2.1/ionTaxi-1.2.1/driver",
+  "bugs": {
+    "url": "https://github.com/gurisko/cordova-plugin-accountkit/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-accountkit",
+    "platforms": [
+      "ios",
+      "android",
+      "browser"
+    ]
+  },
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "replace": "^0.3.0",
+    "xml2js": "^0.4.19"
+  },
+  "deprecated": false,
+  "description": "Cordova AccountKit Plugin",
+  "homepage": "https://github.com/gurisko/cordova-plugin-accountkit#readme",
+  "keywords": [
+    "cordova",
+    "facebook",
+    "accountkit",
+    "passwordless",
+    "authentication",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "name": "cordova-plugin-accountkit",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gurisko/cordova-plugin-accountkit.git"
+  },
+  "version": "1.4.0"
+}

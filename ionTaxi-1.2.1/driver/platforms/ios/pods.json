@@ -1,0 +1,8 @@
+{
+    "AccountKit": {
+        "name": "AccountKit",
+        "type": "podspec",
+        "spec": "~> 4",
+        "count": 1
+    }
+}

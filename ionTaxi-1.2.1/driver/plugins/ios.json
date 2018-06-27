@@ -1,0 +1,42 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.codesundar.iontaxidriver"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.codesundar.iontaxidriver"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.codesundar.iontaxidriver"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.codesundar.iontaxidriver"
+    },
+    "cordova-plugin-accountkit": {
+      "APP_ID": "767580770058358",
+      "APP_NAME": "CodeSundar Labs",
+      "CLIENT_TOKEN": "6d97e93101b1681dfcb868539f6161ea",
+      "API_VERSION": "v1.1",
+      "PACKAGE_NAME": "com.codesundar.iontaxidriver"
+    },
+    "cordova-plugin-geolocation": {
+      "GEOLOCATION_USAGE_DESCRIPTION": " ",
+      "PACKAGE_NAME": "com.codesundar.iontaxidriver"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "com.codesundar.iontaxidriver"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "com.codesundar.iontaxidriver"
+    }
+  }
+}

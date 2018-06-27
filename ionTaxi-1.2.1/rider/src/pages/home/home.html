@@ -1,0 +1,59 @@
+<ion-content>
+  <div id="{{ mapId }}" [ngStyle]="{height: '85%'}"></div>
+  <!-- <ion-list>
+      <ion-item>
+        <ion-label>{{'FROM' | translate}}</ion-label>
+        <ion-input type="text"></ion-input>
+        <button ion-button item-right>Pick</button>
+      </ion-item>
+    </ion-list> -->
+  <!--Choose origin and destination places-->
+  <div class="map-overlay">
+    <div style="top:0; right: 0; padding: 4px;">
+        <button ion-button (click)="goProfilePage()"><ion-icon name="contact"></ion-icon></button>
+    </div>
+
+  </div>
+
+  <div class="align-bottom">
+      <ion-grid class="common-bg" [hidden]="!destination">
+          <ion-row>
+            <ion-col (click)="choosePaymentMethod1()">
+              <ion-icon name="ios-cash-outline" color="gray"></ion-icon>
+              <span ion-text color="gray">{{ getPaymentMethod() }}</span>
+            </ion-col>
+            <ion-col (click)="showPromoPopup()" *ngIf="destination">
+              <ion-icon name="ios-create-outline" color="gray"></ion-icon>
+              <span ion-text color="gray">{{'PROMO' | translate}}</span>
+            </ion-col>
+            <ion-col (click)="showNotePopup()">
+              <ion-icon name="ios-create-outline" color="gray"></ion-icon>
+              <span ion-text color="gray">{{'NOTE' | translate}}</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>  
+    <ion-list no-lines>
+      <ion-item>
+        <ion-input disabled type="text" value="{{origin ? origin.vicinity : '' }}"></ion-input>
+        <button item-right (click)="chooseOrigin()"><ion-icon name="search" class="search-icon"></ion-icon></button>
+      </ion-item>
+      <ion-item>
+        <ion-input disabled type="text" placeholder="where you want to go?" value="{{ destination ? destination.vicinity : '' }}"></ion-input>
+        <button item-right (click)="chooseDestination()"><ion-icon name="search" class="search-icon"></ion-icon></button>
+      </ion-item>
+    </ion-list>
+    <ion-row>
+      <ion-col *ngIf="distanceText!=''" ><ion-icon name="plane"></ion-icon> <b>{{ distanceText }}</b></ion-col>
+      <ion-col *ngIf="durationText!=''"><ion-icon name="time"></ion-icon> <b>{{durationText}}</b></ion-col>
+    </ion-row>
+    <ion-row [hidden]="!destination">
+      <ion-col *ngFor="let vehicle of vehicles; let i = index" [ngClass]="{'active': vehicle.active}" (click)="chooseVehicle(i)">
+          <!-- <img src="assets/img/icon/{{ vehicle.icon }}.svg"> -->
+          <img src="{{ vehicle.icon }}">
+          <p>{{ vehicle.name }} ( {{currency }}{{ vehicle.fee }} )</p>
+      </ion-col>
+    </ion-row>
+    <button ion-button block color="primary" [hidden]="destination" (click)="chooseDestination()">{{'RIDE_NOW' | translate}}</button>
+    <button ion-button block color="primary" [hidden]="!destination" (click)="book()">{{ locateDriver == false ? 'RIDE NOW':'Locating Drivers'}} <ion-spinner name="dots" color="light" [hidden]="!locateDriver"></ion-spinner></button>
+  </div>
+</ion-content>

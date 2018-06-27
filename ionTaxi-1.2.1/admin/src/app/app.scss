@@ -1,0 +1,33 @@
+//global sass/css
+.profile-header{
+    background: color($colors, primary);
+    text-align: center;
+    padding: 10px;
+    color: color($colors, light);
+}
+.profile-header img{
+    width: 50px;
+    border-radius: 100%
+}
+.profile-header a{
+    color: color($colors, blue);
+}
+.split-pane-md.split-pane-visible > .split-pane-side{
+    max-width: 23%;
+}
+table{
+    width: 100%;
+}
+thead{
+    background: #ffd400;
+}
+tr, td, th{
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+.dp{
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+}
+  

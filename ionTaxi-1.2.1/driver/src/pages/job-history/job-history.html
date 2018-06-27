@@ -1,0 +1,56 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{'HISTORY' | translate}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-slides pager>
+      <ion-slide>
+        <h1>{{ stats.today }}</h1>
+        <p>Today</p>
+      </ion-slide>
+      <ion-slide>
+          <h1>{{ stats.yesterday }}</h1>
+          <p>Yesterday</p>
+      </ion-slide>
+      <ion-slide>
+          <h1>{{ stats.thisMonth }}</h1>
+          <p>This Month</p>
+      </ion-slide>
+      <ion-slide>
+          <h1>{{ stats.lastMonth }}</h1>
+          <p>Last Month</p>
+      </ion-slide>
+      <ion-slide>
+          <h1>{{ stats.thisYear }}</h1>
+          <p>This Year</p>
+      </ion-slide>
+      <ion-slide>
+          <h1>{{ stats.lastYear }}</h1>
+          <p>Last Year</p>
+      </ion-slide>
+    </ion-slides>
+  <ion-card *ngFor="let trip of trips">
+    <ion-card-content>
+      <p>{{trip.$key}}</p>
+      <ion-row>
+        <ion-col>
+          <b style="text-align:center">FROM</b> 
+          <p>{{ trip.origin.vicinity }} <br/> <ion-note>{{ trip.pickedUpAt | amDateFormat: 'YYYY-MM-DD HH:mm'}}</ion-note></p>
+        </ion-col>
+        <ion-col>
+            <b style="text-align:center">TO</b> 
+            <p>{{ trip.destination.vicinity }} <br/> <ion-note>{{ trip.droppedOffAt | amDateFormat: 'YYYY-MM-DD HH:mm'}}</ion-note></p>
+        </ion-col>
+      </ion-row>
+      <p>Payment Mode: {{ trip.paymentMethod }}</p>
+      <p>Fee: {{trip.currency}} {{trip.fee}} * {{ trip.promo}} {{trip.discount}} % = {{ trip.fee - (trip.fee * trip.discount / 100) }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,8 @@
+{
+  "name": "ionfiretaxi_rider",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  },
+  "app_id": ""
+}

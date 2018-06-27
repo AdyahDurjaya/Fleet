@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{ user.name }}</ion-title>
+    <ion-buttons end>
+      <a href="tel:{{support}}" ion-button block clear>{{'HELP' | translate}}</a>
+      <button ion-button (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-segment [(ngModel)]="tabs">
+    <ion-segment-button value="profile">
+      {{'BASIC_PROFILE' | translate}}
+    </ion-segment-button>
+    <ion-segment-button value="carinfo">
+      {{'CAR_INFO' | translate }}
+    </ion-segment-button>
+    <ion-segment-button value="uploaddocs">
+      {{'UPLOAD_DOCS' | translate}}
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="tabs" padding>
+    <div *ngSwitchCase="'profile'">
+      <div style="text-align: center;">
+        <img src="{{ user.photoURL }}" style="width:50px;height:50px;border-radius:100px" (click)="chooseFile()">
+        <form ngNoForm>
+          <input id="avatar" name="file" type="file" (change)="upload()">
+        </form>
+      </div>
+      <ion-list>
+        <ion-item>
+          <ion-label stacked>{{'FULLNAME' | translate}}</ion-label>
+          <ion-input type="text" [(ngModel)]="user.name" placeholder="{{'FULLNAME' | translate}}"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{'EMAIL_ADDRESS' | translate}}</ion-label>
+          <ion-input type="email" [(ngModel)]="user.email" disabled placeholder="{{'EMAIL_ADDRESS' | translate}}"></ion-input>
+          <button ion-button item-right clear *ngIf="!user.isEmailVerified" (click)="verifyEmail()">{{'VERIFY' | translate}}</button>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{'PHONE_NUMBER' | translate}}</ion-label>
+          <ion-input type="tel" [(ngModel)]="user.phoneNumber" [disabled]="user.isPhoneVerified" placeholder="{{'PHONE_NUMBER' | translate}}"></ion-input>
+          <button ion-button item-right clear *ngIf="!user.isPhoneVerified" (click)="verifyPhone()">{{'VERIFY' | translate}}</button>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{'BANK_DETAILS' | translate}}</ion-label>
+          <ion-textarea [(ngModel)]="user.bankinfo"></ion-textarea>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div *ngSwitchCase="'carinfo'">
+      <ion-list>
+        <ion-item>
+            <ion-label stacked>{{'CAR_BRAND' | translate}}</ion-label>
+          <ion-input type="text" [(ngModel)]="user.brand" placeholder="{{'CAR_BRAND' | translate}}"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>{{'CAR_MODEL' | translate}}</ion-label>
+          <ion-input type="text" [(ngModel)]="user.model" placeholder="{{'CAR_MODEL' | translate}}"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>{{'PLATE_NUMBER' | translate}}</ion-label>
+          <ion-input type="text" [(ngModel)]="user.plate" placeholder="{{'PLATE_NUMBER' | translate}}"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="types">
+          <ion-label stacked>{{'CAR_TYPE' | translate}}</ion-label>
+          <ion-select [(ngModel)]="user.type">
+            <ion-option value="{{ type }}" *ngFor="let type of types">
+              {{ type }}
+            </ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div *ngSwitchCase="'uploaddocs'">
+      <p *ngIf="user.docsURL">Your Uploaded File:
+        <a href="{{user.docsURL}}" target="_blank">{{'DOWNLOAD' | translate}} PDF</a>
+      </p>
+
+      <p text-center>please upload your scanned copies of licence, insurance, car images as single pdf</p>
+
+      <button ion-button block item-right (click)="chooseDocs()">{{'UPLOAD' | translate}} PDF</button>
+      <div>
+        <form ngNoForm>
+          <input id="docsPDF" name="file" type="file" (change)="uploadDocs()">
+        </form>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer style="padding: 5px;">
+  <button ion-button block (click)="save()">{{'SAVE' | translate}}</button>
+</ion-footer>

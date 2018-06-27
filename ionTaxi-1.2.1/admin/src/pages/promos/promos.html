@@ -1,0 +1,45 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Manage Promo Codes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <table>
+      <thead>
+        <th>Title</th>
+        <th>Code</th>
+        <th>Percentage</th>
+        <th>More</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" [(ngModel)]="newpromocode.title"/></td>
+          <td><input type="text" [(ngModel)]="newpromocode.code"/></td>
+          <td><input type="text" [(ngModel)]="newpromocode.discount"/></td>
+          <td><a href="#" (click)="add()">Add Promo</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <h4 style="text-align:center">All Promo codes</h4>
+    <br/>
+    <table>
+      <thead>
+        <th>Title</th>
+        <th>Code</th>
+        <th>Percentage</th>
+        <th>More</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let code of promocodes;let i = index">
+          <td><input type="text" [(ngModel)]="promocodes[i].title"/></td>
+          <td><input type="text" [(ngModel)]="promocodes[i].code"/></td>
+          <td><input type="text" [(ngModel)]="promocodes[i].discount"/></td>
+          <td><a href="#" (click)="update(i)">Save</a> - <a href="#" (click)="delete(code.key)">Delete</a></td>
+        </tr>
+      </tbody>
+    </table>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+
+  <ion-navbar color="dark">
+    <ion-title>Trips</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <table>
+      <thead>
+        <th>From & To</th>
+        <th>Driver & Passenger</th>
+        <th>Fee & Rating</th>
+        <th>Status</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trip of trips">
+          <td>
+            <b>From:</b> ({{trip.pickedUpAt}})<br/>
+            {{trip.origin.vicinity}} <br/><br/>
+            <b>To:</b> ({{trip.droppedOffAt}})<br/>
+            {{trip.destination.vicinity}}
+          </td>
+          <td>
+            Trip Id: {{trip.key}} <br/>
+            Driver:<br/> <a href="#" (click)="showDriver(trip.driverId)">{{trip.driverId}}</a> <br/>
+            Passenger:<br/> <a href="#" (click)="showPassenger(trip.passengerId)">{{trip.passengerId}}</a></td>
+          <td>
+            Fee: {{trip.currency}} {{trip.fee}} <br/>
+            Discount ({{trip.promo}}): {{trip.discount}} % <br/>
+            Final: {{ trip.fee - (trip.fee * trip.discount / 100) }}<br/>
+            Rating: {{trip.rating}} / 5
+          </td>
+          <td>{{trip.status}}</td>
+        </tr>
+      </tbody>
+    </table>
+</ion-content>

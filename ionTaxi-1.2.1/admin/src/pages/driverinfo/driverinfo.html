@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>{{driver.name}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="close()">Close</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-item>
+    <ion-avatar item-left>
+      <img src="{{driver.photoURL}}"/>
+    </ion-avatar>
+    <h3>{{driver.name}}</h3>
+    <p>{{driver.email}}</p>
+    <a ion-button item-right href="tel:{{driver.phoneNumber}}">Call: {{driver.phoneNumber}}</a>
+  </ion-item>
+  <ion-segment [(ngModel)]="tabs">
+    <ion-segment-button value="carinfo">
+      CAR INFORMATION
+    </ion-segment-button>
+    <ion-segment-button value="ridehistroy" (click)="getTrips()">
+      Ride History
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="tabs">
+      <div *ngSwitchCase="'carinfo'">
+          <ion-item>
+            <ion-label stacked>CAR TYPE</ion-label>
+            <ion-input type="text" [(ngModel)]="driver.type" disabled></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>PLATE NUMBER</ion-label>
+            <ion-input type="text" [(ngModel)]="driver.plate"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>CAR BRAND</ion-label>
+            <ion-input type="text" [(ngModel)]="driver.brand"></ion-input>
+            <a *ngIf="driver.carImg != null" href="{{driver.carImg}}" target="_blank" ion-button item-right clear>View Image</a>
+          </ion-item>
+          <ion-item *ngIf="driver.docsURL">
+            <ion-label>Documents</ion-label>
+            <a href="{{driver.docsURL}}" target="_blank" ion-button item-right>View / Download</a>
+          </ion-item>
+          <ion-item>
+              <button ion-button block (click)="updateDriver()">Update</button>
+          </ion-item>
+      </div>
+      <div *ngSwitchCase="'ridehistroy'">
+        <ion-card *ngFor="let trip of trips">
+            <ion-card-content>
+              <p>{{trip.$key}}</p>
+              <ion-row>
+                <ion-col>
+                  <b style="text-align:center">FROM</b> 
+                  <p>{{ trip.origin.vicinity }} <br/> <ion-note>{{ trip.pickedUpAt}}</ion-note></p>
+                </ion-col>
+                <ion-col>
+                    <b style="text-align:center">TO</b> 
+                    <p>{{ trip.destination.vicinity }} <br/> <ion-note>{{ trip.droppedOffAt}}</ion-note></p>
+                </ion-col>
+              </ion-row>
+              <p>Payment Mode: {{ trip.paymentMethod }}</p>
+              <p>Fee: {{trip.currency}} {{trip.fee}} * {{ trip.promo}} {{trip.discount}} % = {{ trip.fee - (trip.fee * trip.discount / 100) }}</p>
+            </ion-card-content>
+          </ion-card>
+      </div>
+  </div>
+</ion-content>
